@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './views/Nav';
 import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
+import Covid from './views/Covid';
 
 const App = () => {
   let [name, setName] = useState('Hà')
@@ -43,7 +44,8 @@ const App = () => {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Xin Chào {name}</h1>
-          <Todo
+          <Covid />
+          {/* <Todo
             todos={todos}
             title={'All Title'}
             handldeDeleteTodo={handldeDeleteTodo}
@@ -56,7 +58,7 @@ const App = () => {
           <input type='text' value={addrees} onChange={(event) => handleOnChangeInput(event)} />
           <button type='button'
             onClick={(event) => handldeOnClick(event)}
-          >Click me</button>
+          >Click me</button> */}
         </header>
       </div>
     </>
