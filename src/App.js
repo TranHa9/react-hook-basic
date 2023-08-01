@@ -5,6 +5,14 @@ import Nav from './views/Nav';
 import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
 import Covid from './views/Covid';
+import { CountDown, NewCountDown } from './views/Countdown';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 const App = () => {
   let [name, setName] = useState('Hà')
@@ -37,15 +45,21 @@ const App = () => {
     currentTodos = currentTodos.filter(item => item.id !== id)
     setTodos(currentTodos)
   }
+
+  const onTimeUp = () => {
+    alert("time up")
+  }
   return (
     <>
-      <div className="App">
-        <Nav />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1>Xin Chào {name}</h1>
-          <Covid />
-          {/* <Todo
+      <Router>
+        <div className="App">
+          <Nav />
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+
+            {/*
+           */}
+            {/* <Todo
             todos={todos}
             title={'All Title'}
             handldeDeleteTodo={handldeDeleteTodo}
@@ -59,8 +73,23 @@ const App = () => {
           <button type='button'
             onClick={(event) => handldeOnClick(event)}
           >Click me</button> */}
-        </header>
-      </div>
+            <Switch>
+              <Route path="/" exact>
+                <Covid />
+              </Route>
+              <Route path="/Countdown">
+                <CountDown
+                  onTimeUp={onTimeUp}
+                />
+                <span>------------</span>
+                <NewCountDown onTimeUp={onTimeUp} />
+              </Route>
+              <Route path="/">
+              </Route>
+            </Switch>
+          </header>
+        </div>
+      </Router>
     </>
   );
 }
